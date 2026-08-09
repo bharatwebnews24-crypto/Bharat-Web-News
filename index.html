@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारत वेब न्यूज | Bharat Web News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --whatsapp: #25d366;
+            --dark: #1e1e1e;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #f0f2f5; color: var(--dark); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* Header & Top Bar */
+        header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .top-bar {
+            background: var(--dark);
+            color: var(--white);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .top-bar-right { display: flex; gap: 15px; align-items: center; }
+        .wa-top-btn {
+            background: var(--whatsapp);
+            color: var(--white);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo-container {
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+        }
+        .logo { font-size: 2.2rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--dark); }
+
+        /* Navigation */
+        nav { background: var(--primary); padding: 0 5%; }
+        .menu { display: flex; list-style: none; flex-wrap: wrap; }
+        .menu-item { position: relative; }
+        .menu-item a { display: block; padding: 14px 16px; color: var(--white); font-weight: 600; font-size: 0.92rem; transition: var(--transition); }
+        .menu-item:hover > a { background: var(--primary-dark); }
+        .submenu {
+            position: absolute; top: 100%; left: 0; background: var(--white); min-width: 190px;
+            box-shadow: var(--shadow); list-style: none; opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: var(--transition); border-top: 3px solid var(--primary); z-index: 100;
+        }
+        .submenu a { color: var(--dark); padding: 10px 15px; border-bottom: 1px solid #eee; }
+        .submenu a:hover { background: var(--light); color: var(--primary); padding-left: 20px; }
+        .menu-item:hover .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        /* Breaking News Ticker */
+        .ticker-wrap { background: #fff; display: flex; align-items: center; border-bottom: 1px solid #e0e0e0; overflow: hidden; }
+        .ticker-title { background: var(--dark); color: var(--white); padding: 8px 15px; font-weight: bold; white-space: nowrap; font-size: 0.9rem; }
+        .ticker { display: flex; white-space: nowrap; animation: ticker 25s linear infinite; }
+        .ticker-item { padding: 0 30px; color: var(--dark); font-size: 0.9rem; }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* Main Container */
+        .main-container { max-width: 1200px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 25px; }
+        .page-header { background: var(--white); padding: 15px 20px; border-left: 5px solid var(--primary); margin-bottom: 20px; border-radius: 4px; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: var(--transition); }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+        .card-img { height: 180px; width: 100%; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .card-title { font-size: 1.05rem; margin-bottom: 10px; line-height: 1.4; }
+        .card-meta { font-size: 0.75rem; color: #888; display: flex; justify-content: space-between; margin-top: 10px; }
+
+        /* Sidebar Widgets */
+        .sidebar-widget { background: var(--white); padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .widget-title { font-size: 1.1rem; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-bottom: 15px; }
+        .wa-box { background: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 15px; text-align: center; }
+        .wa-btn { background: var(--whatsapp); color: white; padding: 10px 15px; display: inline-block; border-radius: 5px; font-weight: bold; margin-top: 10px; width: 100%; }
+
+        /* Footer */
+        footer { background: var(--dark); color: var(--white); padding: 40px 5% 20px; margin-top: 50px; }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 15px; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: #bbb; font-size: 0.88rem; }
+        .footer-links a:hover { color: var(--white); }
+        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #333; color: #fff; border-radius: 50%; margin-right: 8px; transition: var(--transition); }
+        .social-icons a:hover { background: var(--primary); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.85rem; color: #888; }
+
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } .menu { display: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="top-bar">
+            <div><i class="fa-solid fa-newspaper"></i> भारत वेब न्यूज - ताज्या बातम्या</div>
+            <div class="top-bar-right">
+                <span><i class="fa-solid fa-phone"></i> जाहिरात/संपर्क: ९३२१४३०५३५</span>
+                <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-top-btn"><i class="fa-brands fa-whatsapp"></i> व्हॉट्सॲप जॉईन करा</a>
+            </div>
+        </div>
+        
+        <div class="logo-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-paper-plane"></i> भारत <span>वेब न्यूज</span>
+            </a>
+            <div>
+                <a href="https://bharatwebnews.in" target="_blank" style="font-size: 0.85rem; color: var(--primary); font-weight: bold;"><i class="fa-solid fa-globe"></i> www.bharatwebnews.in</a>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul class="menu">
+                <li class="menu-item"><a href="index.html">होम</a></li>
+                <li class="menu-item">
+                    <a href="maharashtra.html">महाराष्ट्र <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="mumbai.html">मुंबई</a></li>
+                        <li><a href="pune.html">पुणे</a></li>
+                        <li><a href="nagpur.html">नागपूर</a></li>
+                        <li><a href="nashik.html">नाशिक</a></li>
+                        <li><a href="marathwada.html">मराठवाडा</a></li>
+                        <li><a href="vidarbha.html">विदर्भ</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="politics.html">राजकारण <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="maharashtra-politics.html">महाराष्ट्र राजकारण</a></li>
+                        <li><a href="elections.html">निवडणुका</a></li>
+                        <li><a href="parliament.html">संसद</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="india.html">भारत</a></li>
+                <li class="menu-item"><a href="government-schemes.html">सरकारी योजना</a></li>
+                <li class="menu-item">
+                    <a href="sports.html">क्रीडा <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="cricket.html">क्रिकेट</a></li>
+                        <li><a href="kabaddi.html">कबड्डी</a></li>
+                        <li><a href="football.html">फुटबॉल</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="entertainment.html">मनोरंजन <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="bollywood.html">बॉलिवूड</a></li>
+                        <li><a href="marathi-movies.html">मराठी चित्रपट</a></li>
+                        <li><a href="tv.html">टीव्ही</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="agriculture.html">शेती</a></li>
+                <li class="menu-item"><a href="jobs.html">नोकरी व शिक्षण</a></li>
+                <li class="menu-item"><a href="videos.html">व्हिडिओ</a></li>
+                <li class="menu-item"><a href="contact.html">संपर्क</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breaking News Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker-title">ब्रेकिंग न्यूज</div>
+        <div class="ticker">
+            <div class="ticker-item">🔴 "भारत वेब न्यूज" च्या ताज्या अपडेट्ससाठी आमचा व्हॉट्सॲप ग्रुप जॉईन करा.</div>
+            <div class="ticker-item">🔴 महाराष्ट्रात नवीन योजना जाहीर; सविस्तर बातमी वाचा भारत वेब न्यूजवर.</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <main>
+            <div class="page-header">
+                <h2>प्रमुख बातम्या (Top Stories)</h2>
+            </div>
+            <div class="news-grid">
+                <article class="card">
+                    <img src="https://picsum.photos/400/250?random=1" alt="News" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">भारत वेब न्यूजच्या अधिकृत पोर्टलचे अनावरण</h3>
+                        <p style="font-size: 0.88rem; color: #555;">महाराष्ट्रातील सर्व ताज्या घडामोडी आता एका क्लिकवर उपलब्ध...</p>
+                        <div class="card-meta"><span>१० मिनिटांपूर्वी</span><span>भारत वेब न्यूज</span></div>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="https://picsum.photos/400/250?random=2" alt="News" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">राज्यभरात शेतकर्‍यांसाठी नवी पीक विमा योजना लागू</h3>
+                        <p style="font-size: 0.88rem; color: #555;">नुकसानभरपाईच्या प्रक्रियेत पारदर्शकता आणण्यासाठी नवीन निर्णय...</p>
+                        <div class="card-meta"><span>३० मिनिटांपूर्वी</span><span>कृषी प्रतिनिधी</span></div>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+            <!-- WhatsApp Join Box -->
+            <div class="sidebar-widget">
+                <div class="wa-box">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 2.5rem; color: var(--whatsapp);"></i>
+                    <h4 style="margin: 8px 0;">व्हॉट्सॲप ग्रुप जॉईन करा</h4>
+                    <p style="font-size:0.8rem; color:#555;">ताज्या आणि महत्त्वाच्या बातम्या थेट तुमच्या मोबाईलवर मिळवा.</p>
+                    <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-btn"><i class="fa-brands fa-whatsapp"></i> ग्रुप जॉईन करा</a>
+                </div>
+            </div>
+
+            <!-- Editor Info Box -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">संपादकीय संपर्क</h3>
+                <p><strong>मुख्य संपादक:</strong> डी एम गायकवाड</p>
+                <p style="font-size:0.9rem; margin-top:5px;"><i class="fa-solid fa-phone"></i> 9321430535</p>
+                <p style="font-size:0.85rem; margin-top:5px;"><i class="fa-solid fa-envelope"></i> bharatwebnews24@gmail.com</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>भारत वेब न्यूज</h4>
+                <p style="font-size:0.85rem; color:#aaa; line-height: 1.6;">आपल्या हक्काच्या "भारत वेब न्यूज" वर बातम्या, लाईव्ह न्यूज, मुलाखती व जाहिराती देण्यासाठी संपर्क करा.</p>
+                <p style="font-size:0.85rem; color:#fff; margin-top:10px;"><strong>मुख्य संपादक:</strong> डी एम गायकवाड</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>महत्त्वाच्या लिंक्स</h4>
+                <ul class="footer-links">
+                    <li><a href="https://bharatwebnews.in" target="_blank">वेबसाईट (bharatwebnews.in)</a></li>
+                    <li><a href="about.html">आमच्याबद्दल (About Us)</a></li>
+                    <li><a href="contact.html">संपर्क (Contact Us)</a></li>
+                    <li><a href="privacy-policy.html">गोपनीयता धोरण</a></li>
+                    <li><a href="disclaimer.html">अस्वीकरण</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>सोशल मीडियावर फॉलो करा</h4>
+                <div class="social-icons" style="margin-top: 10px;">
+                    <a href="https://www.facebook.com/bharatwebnews.in" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bharat_web_news" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com/Bharat_Web_News" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://youtube.com/@bharatwebnews4208" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" title="WhatsApp" style="background: var(--whatsapp);"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2026 भारत वेब न्यूज. सर्व हक्क सुरक्षित. | Developed for bharatwebnews.in
+        </div>
+    </footer>
+
+</body>
+</html>

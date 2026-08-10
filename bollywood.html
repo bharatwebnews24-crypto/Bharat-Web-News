@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बॉलिवूड बातम्या | भारत वेब न्यूज - Bharat Web News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --logo-saffron: #FF6600; /* केसरी रंग */
+            --logo-blue: #1B2A78;    /* गडद निळा रंग */
+            --logo-red: #E52D27;     /* लाल रंग */
+            --logo-green: #008837;   /* हिरवा रंग */
+            --dark: #121829;
+            --light-bg: #F4F6F9;
+            --white: #FFFFFF;
+            --gray: #6c757d;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: var(--light-bg); color: var(--dark); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top Bar & Header */
+        header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+        .top-bar {
+            background: var(--logo-blue);
+            color: var(--white);
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .top-bar-right { display: flex; gap: 15px; align-items: center; }
+        .wa-top-btn {
+            background: var(--logo-red);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-main {
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 3px solid var(--logo-saffron);
+        }
+        .brand-logo-img { height: 70px; width: auto; object-fit: contain; }
+
+        /* Navigation */
+        nav { background: var(--logo-blue); padding: 0 5%; border-bottom: 4px solid var(--logo-green); }
+        .menu { display: flex; list-style: none; flex-wrap: wrap; }
+        .menu-item { position: relative; }
+        .menu-item a { display: block; padding: 14px 18px; color: var(--white); font-weight: 600; font-size: 0.92rem; transition: var(--transition); }
+        .menu-item:hover > a, .menu-item.active > a { background: var(--logo-saffron); }
+        .submenu {
+            position: absolute; top: 100%; left: 0; background: var(--white); min-width: 190px;
+            box-shadow: var(--shadow); list-style: none; opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: var(--transition); border-top: 3px solid var(--logo-saffron); z-index: 100;
+        }
+        .submenu a { color: var(--dark); padding: 10px 15px; border-bottom: 1px solid #eee; }
+        .submenu a:hover { background: var(--light-bg); color: var(--logo-saffron); padding-left: 20px; }
+        .menu-item:hover .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        /* Ticker */
+        .ticker-wrap { background: var(--white); display: flex; align-items: center; border-bottom: 1px solid #e0e0e0; overflow: hidden; }
+        .ticker-title { background: var(--logo-red); color: var(--white); padding: 8px 15px; font-weight: bold; white-space: nowrap; font-size: 0.9rem; }
+        .ticker { display: flex; white-space: nowrap; animation: ticker 25s linear infinite; }
+        .ticker-item { padding: 0 30px; color: var(--dark); font-size: 0.9rem; font-weight: 500; }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* Bollywood Hero Banner */
+        .bolly-banner {
+            background: linear-gradient(135deg, #800517, var(--logo-red));
+            color: var(--white);
+            padding: 18px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            border-left: 5px solid var(--logo-saffron);
+        }
+
+        /* Sub-navigation Chips */
+        .sub-nav-chips {
+            background: var(--white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .sub-nav-title { font-weight: bold; color: var(--logo-red); font-size: 0.95rem; }
+        .chip-btn {
+            background: var(--light-bg);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #ddd;
+            transition: var(--transition);
+        }
+        .chip-btn:hover { background: var(--logo-red); color: var(--white); border-color: var(--logo-red); }
+
+        /* Main Grid */
+        .main-container { max-width: 1200px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 25px; }
+        .page-header { background: var(--white); padding: 15px 20px; border-left: 5px solid var(--logo-red); margin-bottom: 20px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .page-header h2 { font-size: 1.4rem; color: var(--logo-blue); }
+
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; animation: fadeInUp 0.5s ease-out; }
+        .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: var(--transition); display: flex; flex-direction: column; border-top: 3px solid transparent; }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-top-color: var(--logo-red); }
+        .card-img-container { position: relative; overflow: hidden; height: 180px; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-category { position: absolute; top: 10px; left: 10px; background: var(--logo-red); color: var(--white); padding: 3px 10px; font-size: 0.75rem; border-radius: 3px; font-weight: bold; }
+        .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { font-size: 1.05rem; margin-bottom: 10px; line-height: 1.4; color: var(--dark); font-weight: 700; }
+        .card-text { font-size: 0.88rem; color: var(--gray); margin-bottom: 15px; line-height: 1.5; }
+        .card-meta { margin-top: auto; font-size: 0.75rem; color: #888; display: flex; justify-content: space-between; }
+
+        /* Sidebar Widgets */
+        .sidebar-widget { background: var(--white); padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .widget-title { font-size: 1.1rem; border-bottom: 2px solid var(--logo-red); padding-bottom: 8px; margin-bottom: 15px; color: var(--logo-blue); }
+        .wa-box { background: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 15px; text-align: center; }
+        .wa-btn { background: #25d366; color: white; padding: 10px 15px; display: inline-block; border-radius: 5px; font-weight: bold; margin-top: 10px; width: 100%; transition: var(--transition); }
+        .wa-btn:hover { background: #1ebd56; }
+
+        /* Footer */
+        footer { background: var(--logo-blue); color: var(--white); padding: 40px 5% 20px; margin-top: 50px; border-top: 5px solid var(--logo-saffron); }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 15px; border-bottom: 2px solid var(--logo-saffron); display: inline-block; padding-bottom: 5px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: #bbb; font-size: 0.88rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--white); padding-left: 5px; }
+        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,0.1); color: #fff; border-radius: 50%; margin-right: 8px; transition: var(--transition); }
+        .social-icons a:hover { background: var(--logo-saffron); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: #888; }
+
+        @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } .menu { display: none; } }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div><i class="fa-solid fa-film"></i> भारत वेब न्यूज - बॉलिवूड, हिंदी चित्रपट आणि सेलिब्रिटी अपडेट्स</div>
+        <div class="top-bar-right">
+            <span><i class="fa-solid fa-phone"></i> जाहिरात/संपर्क: ९३२१४३०५३५</span>
+            <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-top-btn"><i class="fa-brands fa-whatsapp"></i> व्हॉट्सॲप जॉईन करा</a>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="header-main">
+            <a href="index.html">
+                <img src="CC_20220308_220246 (1).jpg" alt="भारत वेब न्यूज लोगो" class="brand-logo-img">
+            </a>
+            <div>
+                <a href="https://bharatwebnews.in" target="_blank" style="font-size: 0.9rem; color: var(--logo-blue); font-weight: bold; background: #eef2ff; padding: 8px 15px; border-radius: 5px; border: 1px solid #c7d2fe;">
+                    <i class="fa-solid fa-globe" style="color: var(--logo-saffron);"></i> www.bharatwebnews.in
+                </a>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav>
+            <ul class="menu">
+                <li class="menu-item"><a href="index.html">होम</a></li>
+                <li class="menu-item">
+                    <a href="maharashtra.html">महाराष्ट्र <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="maharashtra-politics.html">महाराष्ट्र राजकारण</a></li>
+                        <li><a href="mumbai.html">मुंबई</a></li>
+                        <li><a href="pune.html">पुणे</a></li>
+                        <li><a href="nagpur.html">नागपूर</a></li>
+                        <li><a href="marathwada.html">मराठवाडा</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="national.html">भारत</a></li>
+                <li class="menu-item">
+                    <a href="politics.html">राजकारण <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="maharashtra-politics.html">महाराष्ट्र राजकारण</a></li>
+                        <li><a href="elections.html">निवडणुका</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="sports.html">क्रीडा <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="cricket.html">क्रिकेट</a></li>
+                        <li><a href="kabaddi.html">कबड्डी</a></li>
+                        <li><a href="football.html">फुटबॉल</a></li>
+                        <li><a href="other-sports.html">इतर खेळ</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item active">
+                    <a href="entertainment.html">मनोरंजन <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                    <ul class="submenu">
+                        <li><a href="bollywood.html">बॉलिवूड</a></li>
+                        <li><a href="marathi-cinema.html">मराठी चित्रपट</a></li>
+                        <li><a href="tv-serials.html">टीव्ही मालिका</a></li>
+                        <li><a href="web-series.html">वेब सीरिज</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item"><a href="agriculture.html">शेती</a></li>
+                <li class="menu-item"><a href="contact.html">संपर्क</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breaking News Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker-title"><i class="fa-solid fa-star"></i> बॉलिवूड न्यूज</div>
+        <div class="ticker">
+            <div class="ticker-item">🎬 नव्या बॉलिवूड थ्रिलरचा टीझर प्रदर्शित; पहिल्याच दिवशी सोशल मीडियावर धुमाकूळ!</div>
+            <div class="ticker-item">🎬 वीकेंड बॉक्स ऑफिस रिव्ह्यू: १०० कोटींच्या क्लबमध्ये नव्या चित्रपटाचा समावेश!</div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <main>
+            <!-- Hero Banner -->
+            <div class="bolly-banner">
+                <div>
+                    <span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;"><i class="fa-solid fa-clapperboard"></i> बॉलिवूड स्पेशल</span>
+                    <h3 style="margin-top: 8px; font-size: 1.25rem;">हिंदी सिनेसृष्टीतील धमाकेदार बातम्या, रिव्ह्यू आणि गॉसिप्स!</h3>
+                </div>
+                <div style="font-size: 0.85rem; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 4px;">
+                    भारत वेब न्यूज एंटरटेनमेंट
+                </div>
+            </div>
+
+            <!-- Quick Filter Chips -->
+            <div class="sub-nav-chips">
+                <span class="sub-nav-title"><i class="fa-solid fa-filter"></i> कॅटेगरी:</span>
+                <a href="#gossips" class="chip-btn">सेलिब्रिटी गॉसिप्स</a>
+                <a href="#boxoffice" class="chip-btn">बॉक्स ऑफिस</a>
+                <a href="#reviews" class="chip-btn">मूव्ही रिव्ह्यू</a>
+                <a href="#trailers" class="chip-btn">ट्रेलर व टीझर</a>
+            </div>
+
+            <div class="page-header">
+                <h2><i class="fa-solid fa-camera-retro"></i> बॉलिवूड (Bollywood News)</h2>
+                <span style="font-size: 0.85rem; color: var(--gray);">बी-टाऊनमधील सर्वात वेगवान अपडेट्स</span>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-grid">
+                
+                <!-- Article 1 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="card-category">मोठी बातमी</span>
+                        <img src="https://picsum.photos/400/250?random=201" alt="Bollywood Movie" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">मोठ्या बजेटच्या हिंदी ॲक्शनपटाचे शूटिंग पूर्ण; प्रदर्शनाची तारीख ठरली!</h3>
+                        <p class="card-text">अभिनेत्याच्या डॅशिंग लूकची सोशल मीडियावर जोरदार चर्चा; लवकरच अधिकृत टीझर रिलीज होणार...</p>
+                        <div class="card-meta">
+                            <span><i class="fa-regular fa-clock"></i> ३० मिनिटांपूर्वी</span>
+                            <span>बॉलिवूड डेस्क</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="card-category" style="background: var(--logo-saffron);">बॉक्स ऑफिस</span>
+                        <img src="https://picsum.photos/400/250?random=202" alt="Box Office Collection" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">पहिल्याच वीकेंडला ३०० कोटींचा टप्पा पार! बॉक्स ऑफिसवर नव्या चित्रपटाचा धमाका</h3>
+                        <p class="card-text">प्रेक्षकांचा तुफान प्रतिसाद; सिंगल स्क्रीनसह मल्टिप्लेक्सवर हाऊसफुल्लचे बोर्ड...</p>
+                        <div class="card-meta">
+                            <span><i class="fa-regular fa-clock"></i> १ तासापूर्वी</span>
+                            <span>भारत वेब न्यूज</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="card-category" style="background: var(--logo-green);">सेलिब्रिटी लाइफ</span>
+                        <img src="https://picsum.photos/400/250?random=203" alt="Celebrity Gossip" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">प्रसिद्ध अभिनेत्रीच्या नव्या लूकने वेधले सर्वांचे लक्ष; एअरपोर्टवरील फोटो व्हायरल</h3>
+                        <p class="card-text">स्टायलिश आऊटफिट आणि कॅज्युअल अंदाज; चाहत्यांकडून फोटोंवर लाईक्सचा पाऊस...</p>
+                        <div class="card-meta">
+                            <span><i class="fa-regular fa-clock"></i> ३ तासांपूर्वी</span>
+                            <span>विशेष प्रतिनिधी</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="card">
+                    <div class="card-img-container">
+                        <span class="card-category">मूव्ही रिव्ह्यू</span>
+                        <img src="https://picsum.photos/400/250?random=204" alt="Movie Review" class="card-img">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">रिव्ह्यू: थ्रिलर आणि अभिनयाचा जबरदस्त मेळ; चित्रपट पाहावा की नाही?</h3>
+                        <p class="card-text">कथानकातील ट्विस्ट आणि टर्न खिळवून ठेवणारे; मुख्य अभिनेत्याचा करिअरमधील सर्वोत्तम अभिनय...</p>
+                        <div class="card-meta">
+                            <span><i class="fa-regular fa-clock"></i> ५ तासांपूर्वी</span>
+                            <span>मनोरंजन समीक्षक</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+
+        <!-- Sidebar -->
+        <aside>
+            <!-- WhatsApp Box -->
+            <div class="sidebar-widget">
+                <div class="wa-box">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 2.5rem; color: #25d366;"></i>
+                    <h4 style="margin: 8px 0;">बॉलिवूड गॉसिप्स व्हॉट्सॲपवर!</h4>
+                    <p style="font-size:0.8rem; color:#555;">सिनेमा रिव्ह्यू, बॉक्स ऑफिस कलेक्शन आणि ब्रेकिंग न्यूज मिळवा.</p>
+                    <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-btn"><i class="fa-brands fa-whatsapp"></i> व्हॉट्सॲप ग्रुप जॉईन करा</a>
+                </div>
+            </div>
+
+            <!-- Entertainment Links -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">इतर मनोरंजन विभाग</h3>
+                <ul style="list-style: none; line-height: 2.2;">
+                    <li><a href="marathi-cinema.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--logo-red);"></i> मराठी चित्रपट सृष्टी</a></li>
+                    <li><a href="tv-serials.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--logo-red);"></i> टीव्ही मालिका अपडेट्स</a></li>
+                    <li><a href="web-series.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--logo-red);"></i> ओटीटी व वेब सीरिज</a></li>
+                </ul>
+            </div>
+
+            <!-- Editor Info Box -->
+            <div class="sidebar-widget">
+                <h3 class="widget-title">संपर्क व जाहिरात</h3>
+                <p style="font-size: 0.9rem;"><strong>मुख्य संपादक:</strong> डी एम गायकवाड</p>
+                <p style="font-size:0.85rem; margin-top:5px;"><i class="fa-solid fa-phone"></i> ९३२१४३०५३५</p>
+                <p style="font-size:0.85rem; margin-top:5px;"><i class="fa-solid fa-envelope"></i> bharatwebnews24@gmail.com</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>भारत वेब न्यूज</h4>
+                <p style="font-size:0.85rem; color:#aaa; line-height: 1.6;">आपल्या हक्काच्या "भारत वेब न्यूज" वर बातम्या, लाईव्ह न्यूज, मुलाखती व जाहिराती देण्यासाठी संपर्क करा.</p>
+                <p style="font-size:0.85rem; color:#fff; margin-top:10px;"><strong>मुख्य संपादक:</strong> डी एम गायकवाड</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>महत्त्वाच्या लिंक्स</h4>
+                <ul class="footer-links">
+                    <li><a href="https://bharatwebnews.in" target="_blank">वेबसाईट (bharatwebnews.in)</a></li>
+                    <li><a href="about.html">आमच्याबद्दल (About Us)</a></li>
+                    <li><a href="contact.html">संपर्क (Contact Us)</a></li>
+                    <li><a href="privacy-policy.html">गोपनीयता धोरण</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>सोशल मीडियावर फॉलो करा</h4>
+                <div class="social-icons" style="margin-top: 10px;">
+                    <a href="https://www.facebook.com/bharatwebnews.in" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/bharat_web_news" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com/Bharat_Web_News" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://youtube.com/@bharatwebnews4208" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" title="WhatsApp" style="background: #25d366;"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            &copy; 2026 भारत वेब न्यूज. सर्व हक्क सुरक्षित. | Developed for bharatwebnews.in
+        </div>
+    </footer>
+
+</body>
+</html>

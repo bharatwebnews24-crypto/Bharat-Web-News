@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>भारत वेब न्यूज | Bharat Web News</title>
+    
+    <!-- Browser Tab Icon (Favicon) -->
+    <link rel="icon" type="image/png" href="bwn logo.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,24 +116,28 @@
         }
 
         .logo-container {
-            padding: 16px 5%;
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 2.3rem;
-            font-weight: 800;
-            color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 12px;
-            letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: var(--dark);
+        /* LOGO STYLING */
+        .site-logo {
+            height: 65px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .site-logo:hover {
+            transform: scale(1.03);
         }
 
         .search-box {
@@ -314,7 +322,7 @@
             gap: 25px;
         }
 
-        /* Dynamic Card Style */
+        /* Card Style */
         .card {
             background: var(--card-bg);
             border-radius: var(--radius-md);
@@ -567,10 +575,10 @@
         }
 
         @media (max-width: 768px) {
-            .logo-container { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .logo-container { flex-direction: column; gap: 15px; align-items: center; }
+            .site-logo { height: 50px; } /* मोबाईलवर लोगो साईझ थोडी लहान केली आहे */
             .search-box { width: 100%; }
             .search-box:focus-within { width: 100%; }
-            .menu { display: none; } /* मोबाईलसाठी हॅम्बर्गर मेनू वापरता येईल */
         }
     </style>
 </head>
@@ -580,12 +588,13 @@
     <header>
         <div class="top-bar">
             <div><span class="live-badge">LIVE</span> भारत वेब न्यूज - ताज्या बातम्या</div>
-            <div id="current-date">रविवार, ९ ऑगस्ट २०२६</div>
+            <div id="current-date">सोमवार, १० ऑगस्ट २०२६</div>
         </div>
         
+        <!-- Logo Section -->
         <div class="logo-container">
             <a href="index.html" class="logo">
-                <i class="fa-solid fa-newspaper"></i> भारत <span>वेब न्यूज</span>
+                <img src="bwn logo.png" alt="भारत वेब न्यूज" class="site-logo">
             </a>
             <div class="search-box">
                 <input type="text" placeholder="बातम्या शोधा...">

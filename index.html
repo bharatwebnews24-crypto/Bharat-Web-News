@@ -6,7 +6,7 @@
     <title>भारत वेब न्यूज | Bharat Web News</title>
     
     <!-- Browser Tab Icon (Favicon) -->
-    <link rel="icon" type="image/png" href="bwn-logo.png">
+    <link rel="icon" type="image/jpeg" href="bwn logo.jpg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,11 +120,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .logo {
+        .logo-left-group {
             display: flex;
             align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-link {
+            display: inline-block;
         }
 
         /* LOGO STYLING */
@@ -138,6 +146,21 @@
 
         .site-logo:hover {
             transform: scale(1.03);
+        }
+
+        .web-link a {
+            font-size: 0.9rem;
+            color: #d32f2f;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .web-link a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
         }
 
         .search-box {
@@ -575,8 +598,9 @@
         }
 
         @media (max-width: 768px) {
-            .logo-container { flex-direction: column; gap: 15px; align-items: center; }
-            .site-logo { height: 50px; } /* मोबाईलवर लोगो साईझ थोडी लहान केली आहे */
+            .logo-container { flex-direction: column; gap: 12px; align-items: center; }
+            .logo-left-group { flex-direction: column; gap: 8px; text-align: center; }
+            .site-logo { height: 50px; }
             .search-box { width: 100%; }
             .search-box:focus-within { width: 100%; }
         }
@@ -593,9 +617,16 @@
         
         <!-- Logo Section -->
         <div class="logo-container">
-            <a href="index.html" class="logo">
-                <img src="bwn logo.png" alt="भारत वेब न्यूज" class="site-logo">
-            </a>
+            <div class="logo-left-group">
+                <a href="index.html" class="logo-link">
+                    <img src="bwn logo.jpg" alt="भारत वेब न्यूज" class="site-logo">
+                </a>
+                <div class="web-link">
+                    <a href="https://bharatwebnews.in" target="_blank">
+                        <i class="fa-solid fa-globe"></i> www.bharatwebnews.in
+                    </a>
+                </div>
+            </div>
             <div class="search-box">
                 <input type="text" placeholder="बातम्या शोधा...">
                 <i class="fa-solid fa-magnifying-glass"></i>

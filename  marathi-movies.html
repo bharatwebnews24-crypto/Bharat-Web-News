@@ -8,31 +8,31 @@
     
     <style>
         :root {
-            --logo-saffron: #FF6600; /* केसरी रंग */
-            --logo-blue: #1B2A78;    /* गडद निळा रंग */
-            --logo-red: #E52D27;     /* लाल रंग */
-            --logo-green: #008837;   /* हिरवा रंग */
-            --dark: #121829;
-            --light-bg: #F4F6F9;
-            --white: #FFFFFF;
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --whatsapp: #25d366;
+            --dark: #1e1e1e;
+            --light: #f8f9fa;
+            --white: #ffffff;
             --gray: #6c757d;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: var(--light-bg); color: var(--dark); overflow-x: hidden; }
+        body { background-color: #f0f2f5; color: var(--dark); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
+        /* Entry Animation */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Top Bar & Header */
+        /* Header & Top Bar */
         header { background: var(--white); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
         .top-bar {
-            background: var(--logo-blue);
+            background: var(--dark);
             color: var(--white);
             padding: 8px 5%;
             display: flex;
@@ -44,148 +44,105 @@
         }
         .top-bar-right { display: flex; gap: 15px; align-items: center; }
         .wa-top-btn {
-            background: var(--logo-red);
+            background: var(--whatsapp);
             color: var(--white);
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 3px 10px;
+            border-radius: 15px;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
-        .header-main {
-            padding: 12px 5%;
+        .logo-container {
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: var(--white);
-            border-bottom: 3px solid var(--logo-saffron);
         }
-        .brand-logo-img { height: 70px; width: auto; object-fit: contain; }
+        .logo { font-size: 2.2rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--dark); }
 
         /* Navigation */
-        nav { background: var(--logo-blue); padding: 0 5%; border-bottom: 4px solid var(--logo-green); }
+        nav { background: var(--primary); padding: 0 5%; }
         .menu { display: flex; list-style: none; flex-wrap: wrap; }
         .menu-item { position: relative; }
-        .menu-item a { display: block; padding: 14px 18px; color: var(--white); font-weight: 600; font-size: 0.92rem; transition: var(--transition); }
-        .menu-item:hover > a, .menu-item.active > a { background: var(--logo-saffron); }
+        .menu-item a { display: block; padding: 14px 16px; color: var(--white); font-weight: 600; font-size: 0.92rem; transition: var(--transition); }
+        .menu-item:hover > a, .menu-item.active > a { background: var(--primary-dark); }
         .submenu {
             position: absolute; top: 100%; left: 0; background: var(--white); min-width: 190px;
             box-shadow: var(--shadow); list-style: none; opacity: 0; visibility: hidden;
-            transform: translateY(10px); transition: var(--transition); border-top: 3px solid var(--logo-saffron); z-index: 100;
+            transform: translateY(10px); transition: var(--transition); border-top: 3px solid var(--primary); z-index: 100;
         }
         .submenu a { color: var(--dark); padding: 10px 15px; border-bottom: 1px solid #eee; }
-        .submenu a:hover { background: var(--light-bg); color: var(--logo-saffron); padding-left: 20px; }
+        .submenu a:hover { background: var(--light); color: var(--primary); padding-left: 20px; }
         .menu-item:hover .submenu { opacity: 1; visibility: visible; transform: translateY(0); }
 
         /* Ticker */
-        .ticker-wrap { background: var(--white); display: flex; align-items: center; border-bottom: 1px solid #e0e0e0; overflow: hidden; }
-        .ticker-title { background: var(--logo-saffron); color: var(--white); padding: 8px 15px; font-weight: bold; white-space: nowrap; font-size: 0.9rem; }
+        .ticker-wrap { background: #fff; display: flex; align-items: center; border-bottom: 1px solid #e0e0e0; overflow: hidden; }
+        .ticker-title { background: var(--dark); color: var(--white); padding: 8px 15px; font-weight: bold; white-space: nowrap; font-size: 0.9rem; }
         .ticker { display: flex; white-space: nowrap; animation: ticker 25s linear infinite; }
-        .ticker-item { padding: 0 30px; color: var(--dark); font-size: 0.9rem; font-weight: 500; }
+        .ticker-item { padding: 0 30px; color: var(--dark); font-size: 0.9rem; }
         @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
-
-        /* Marathi Cinema Banner */
-        .marathi-banner {
-            background: linear-gradient(135deg, #cc5200, var(--logo-saffron));
-            color: var(--white);
-            padding: 18px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            border-left: 5px solid var(--logo-blue);
-        }
-
-        /* Sub-navigation Chips */
-        .sub-nav-chips {
-            background: var(--white);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-        .sub-nav-title { font-weight: bold; color: var(--logo-saffron); font-size: 0.95rem; }
-        .chip-btn {
-            background: var(--light-bg);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid #ddd;
-            transition: var(--transition);
-        }
-        .chip-btn:hover { background: var(--logo-saffron); color: var(--white); border-color: var(--logo-saffron); }
 
         /* Main Grid */
         .main-container { max-width: 1200px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 25px; }
-        .page-header { background: var(--white); padding: 15px 20px; border-left: 5px solid var(--logo-saffron); margin-bottom: 20px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
-        .page-header h2 { font-size: 1.4rem; color: var(--logo-blue); }
+        .page-header { background: var(--white); padding: 15px 20px; border-left: 5px solid var(--primary); margin-bottom: 20px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; }
+        .page-header h2 { font-size: 1.4rem; color: var(--dark); }
 
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; animation: fadeInUp 0.5s ease-out; }
-        .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: var(--transition); display: flex; flex-direction: column; border-top: 3px solid transparent; }
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-top-color: var(--logo-saffron); }
+        .card { background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: var(--transition); display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
         .card-img-container { position: relative; overflow: hidden; height: 180px; }
         .card-img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
         .card:hover .card-img { transform: scale(1.05); }
-        .card-category { position: absolute; top: 10px; left: 10px; background: var(--logo-saffron); color: var(--white); padding: 3px 10px; font-size: 0.75rem; border-radius: 3px; font-weight: bold; }
+        .card-category { position: absolute; top: 10px; left: 10px; background: var(--primary); color: var(--white); padding: 3px 10px; font-size: 0.75rem; border-radius: 3px; font-weight: bold; }
         .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-title { font-size: 1.05rem; margin-bottom: 10px; line-height: 1.4; color: var(--dark); font-weight: 700; }
+        .card-title { font-size: 1.05rem; margin-bottom: 10px; line-height: 1.4; color: var(--dark); }
         .card-text { font-size: 0.88rem; color: var(--gray); margin-bottom: 15px; line-height: 1.5; }
         .card-meta { margin-top: auto; font-size: 0.75rem; color: #888; display: flex; justify-content: space-between; }
 
         /* Sidebar Widgets */
         .sidebar-widget { background: var(--white); padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .widget-title { font-size: 1.1rem; border-bottom: 2px solid var(--logo-saffron); padding-bottom: 8px; margin-bottom: 15px; color: var(--logo-blue); }
+        .widget-title { font-size: 1.1rem; border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-bottom: 15px; color: var(--dark); }
         .wa-box { background: #e8f5e9; border: 1px solid #c8e6c9; border-radius: 8px; padding: 15px; text-align: center; }
-        .wa-btn { background: #25d366; color: white; padding: 10px 15px; display: inline-block; border-radius: 5px; font-weight: bold; margin-top: 10px; width: 100%; transition: var(--transition); }
+        .wa-btn { background: var(--whatsapp); color: white; padding: 10px 15px; display: inline-block; border-radius: 5px; font-weight: bold; margin-top: 10px; width: 100%; transition: var(--transition); }
         .wa-btn:hover { background: #1ebd56; }
 
         /* Footer */
-        footer { background: var(--logo-blue); color: var(--white); padding: 40px 5% 20px; margin-top: 50px; border-top: 5px solid var(--logo-saffron); }
+        footer { background: var(--dark); color: var(--white); padding: 40px 5% 20px; margin-top: 50px; }
         .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
-        .footer-col h4 { color: var(--white); margin-bottom: 15px; border-bottom: 2px solid var(--logo-saffron); display: inline-block; padding-bottom: 5px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 15px; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
         .footer-links { list-style: none; }
         .footer-links li { margin-bottom: 8px; }
         .footer-links a { color: #bbb; font-size: 0.88rem; transition: var(--transition); }
         .footer-links a:hover { color: var(--white); padding-left: 5px; }
-        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,0.1); color: #fff; border-radius: 50%; margin-right: 8px; transition: var(--transition); }
-        .social-icons a:hover { background: var(--logo-saffron); transform: translateY(-3px); }
-        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: #888; }
+        .social-icons a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: #333; color: #fff; border-radius: 50%; margin-right: 8px; transition: var(--transition); }
+        .social-icons a:hover { background: var(--primary); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.85rem; color: #888; }
 
         @media (max-width: 900px) { .main-container { grid-template-columns: 1fr; } .menu { display: none; } }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div><i class="fa-solid fa-film"></i> भारत वेब न्यूज - मराठी चित्रपट आणि नाट्यसृष्टीतील ताज्या घडामोडी</div>
-        <div class="top-bar-right">
-            <span><i class="fa-solid fa-phone"></i> जाहिरात/संपर्क: ९३२१४३०५३५</span>
-            <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-top-btn"><i class="fa-brands fa-whatsapp"></i> व्हॉट्सॲप जॉईन करा</a>
-        </div>
-    </div>
-
     <!-- Header Section -->
     <header>
-        <div class="header-main">
-            <a href="index.html">
-                <img src="CC_20220308_220246 (1).jpg" alt="भारत वेब न्यूज लोगो" class="brand-logo-img">
+        <div class="top-bar">
+            <div><i class="fa-solid fa-clapperboard"></i> भारत वेब न्यूज - मराठी चित्रपट, नाटक व कलाकारांच्या खास बातम्या</div>
+            <div class="top-bar-right">
+                <span><i class="fa-solid fa-phone"></i> जाहिरात/संपर्क: ९३२१४३०५३५</span>
+                <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-top-btn"><i class="fa-brands fa-whatsapp"></i> व्हॉट्सॲप जॉईन करा</a>
+            </div>
+        </div>
+        
+        <div class="logo-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-paper-plane"></i> भारत <span>वेब न्यूज</span>
             </a>
             <div>
-                <a href="https://bharatwebnews.in" target="_blank" style="font-size: 0.9rem; color: var(--logo-blue); font-weight: bold; background: #eef2ff; padding: 8px 15px; border-radius: 5px; border: 1px solid #c7d2fe;">
-                    <i class="fa-solid fa-globe" style="color: var(--logo-saffron);"></i> www.bharatwebnews.in
-                </a>
+                <a href="https://bharatwebnews.in" target="_blank" style="font-size: 0.85rem; color: var(--primary); font-weight: bold;"><i class="fa-solid fa-globe"></i> www.bharatwebnews.in</a>
             </div>
         </div>
 
@@ -196,22 +153,26 @@
                 <li class="menu-item">
                     <a href="maharashtra.html">महाराष्ट्र <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
                     <ul class="submenu">
-                        <li><a href="maharashtra-politics.html">महाराष्ट्र राजकारण</a></li>
                         <li><a href="mumbai.html">मुंबई</a></li>
                         <li><a href="pune.html">पुणे</a></li>
                         <li><a href="nagpur.html">नागपूर</a></li>
+                        <li><a href="nashik.html">नाशिक</a></li>
                         <li><a href="marathwada.html">मराठवाडा</a></li>
+                        <li><a href="vidarbha.html">विदर्भ</a></li>
                     </ul>
                 </li>
-                <li class="menu-item"><a href="national.html">भारत</a></li>
                 <li class="menu-item">
                     <a href="politics.html">राजकारण <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
                     <ul class="submenu">
                         <li><a href="maharashtra-politics.html">महाराष्ट्र राजकारण</a></li>
                         <li><a href="elections.html">निवडणुका</a></li>
+                        <li><a href="parliament.html">संसद</a></li>
                     </ul>
                 </li>
-                <li class="menu-item"><a href="sports.html">क्रीडा <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
+                <li class="menu-item"><a href="national.html">भारत</a></li>
+                <li class="menu-item"><a href="government-schemes.html">सरकारी योजना</a></li>
+                <li class="menu-item">
+                    <a href="sports.html">क्रीडा <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i></a>
                     <ul class="submenu">
                         <li><a href="cricket.html">क्रिकेट</a></li>
                         <li><a href="kabaddi.html">कबड्डी</a></li>
@@ -224,11 +185,12 @@
                     <ul class="submenu">
                         <li><a href="bollywood.html">बॉलिवूड</a></li>
                         <li><a href="marathi-movies.html">मराठी चित्रपट</a></li>
-                        <li><a href="tv-serials.html">टीव्ही मालिका</a></li>
-                        <li><a href="web-series.html">वेब सीरिज</a></li>
+                        <li><a href="tv.html">टीव्ही</a></li>
                     </ul>
                 </li>
                 <li class="menu-item"><a href="agriculture.html">शेती</a></li>
+                <li class="menu-item"><a href="jobs.html">नोकरी व शिक्षण</a></li>
+                <li class="menu-item"><a href="videos.html">व्हिडिओ</a></li>
                 <li class="menu-item"><a href="contact.html">संपर्क</a></li>
             </ul>
         </nav>
@@ -236,39 +198,19 @@
 
     <!-- Breaking News Ticker -->
     <div class="ticker-wrap">
-        <div class="ticker-title"><i class="fa-solid fa-clapperboard"></i> मराठी चित्रपट</div>
+        <div class="ticker-title">मराठी सिनेमा</div>
         <div class="ticker">
-            <div class="ticker-item">🎬 नव्या मराठी ऐतिहासिक चित्रपटाचे मोशन पोस्टर रिलीज; प्रेक्षकांमध्ये प्रचंड उत्सुकता!</div>
-            <div class="ticker-item">🎬 वीकेंड बॉक्स ऑफिस: मराठी चित्रपटाची शानदार कमाई, प्रेक्षकांची थिएटरमध्ये गर्दी!</div>
+            <div class="ticker-item">🎬 नव्या मराठी चित्रपटाचे पोस्टर सोशल मीडियावर प्रदर्शित; प्रेक्षकांची पसंती.</div>
+            <div class="ticker-item">🎭 मराठी रंगभूमीवरील नव्या नाटकाची जोरदार चर्चा; बुकिंग फुल्ल.</div>
         </div>
     </div>
 
     <!-- Main Container -->
     <div class="main-container">
         <main>
-            <!-- Hero Banner -->
-            <div class="marathi-banner">
-                <div>
-                    <span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;"><i class="fa-solid fa-star"></i> मराठी सिनेमा विशेष</span>
-                    <h3 style="margin-top: 8px; font-size: 1.25rem;">मराठी चित्रपटसृष्टी, नवे सिनेमे, टीझर आणि कलाकारांच्या खास मुलाखती!</h3>
-                </div>
-                <div style="font-size: 0.85rem; background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 4px;">
-                    भारत वेब न्यूज एंटरटेनमेंट
-                </div>
-            </div>
-
-            <!-- Quick Filter Chips -->
-            <div class="sub-nav-chips">
-                <span class="sub-nav-title"><i class="fa-solid fa-filter"></i> वर्गवारी:</span>
-                <a href="#new-releases" class="chip-btn">नवे सिनेमे</a>
-                <a href="#reviews" class="chip-btn">मूव्ही रिव्ह्यू</a>
-                <a href="#boxoffice" class="chip-btn">बॉक्स ऑफिस</a>
-                <a href="#interviews" class="chip-btn">मुलाखती</a>
-            </div>
-
             <div class="page-header">
-                <h2><i class="fa-solid fa-video"></i> मराठी चित्रपट (Marathi Movies News)</h2>
-                <span style="font-size: 0.85rem; color: var(--gray);">मराठी सिनेसृष्टीतील ताजी माहिती</span>
+                <h2><i class="fa-solid fa-video"></i> मराठी चित्रपट बातम्या (Marathi Movies)</h2>
+                <span style="font-size: 0.85rem; color: var(--gray);">चित्रपट, टीझर-ट्रेलर, नाटक व बॉक्स ऑफिस अपडेट्स</span>
             </div>
 
             <!-- News Grid -->
@@ -277,15 +219,15 @@
                 <!-- Article 1 -->
                 <article class="card">
                     <div class="card-img-container">
-                        <span class="card-category">नवा चित्रपट</span>
-                        <img src="https://picsum.photos/400/250?random=205" alt="Marathi Movie News" class="card-img">
+                        <span class="card-category">नवीन रिलीज</span>
+                        <img src="https://picsum.photos/400/250?random=210" alt="Marathi Cinema Poster" class="card-img">
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">नव्या ऐतिहासिक मराठी चित्रपटाची मोठी घोषणा; टीझरने वेधले रसिकांचे लक्ष!</h3>
-                        <p class="card-text">तगडी स्टारकास्ट आणि भव्य सेट; प्रेक्षकांना लवकरच मोठ्या पडद्यावर पाहायला मिळणार थरार...</p>
+                        <h3 class="card-title">महाराष्ट्रात नवा मराठी चित्रपट हाऊसफुल्ल; पहिल्या दिवशी प्रेक्षकांचा उदंड प्रतिसाद</h3>
+                        <p class="card-text">कथानक आणि कलाकारांच्या दमदार अभिनयामुळे थिएटरमध्ये प्रेक्षकांनी टाळ्यांचा कडकडाट केला...</p>
                         <div class="card-meta">
-                            <span><i class="fa-regular fa-clock"></i> २५ मिनिटांपूर्वी</span>
-                            <span>मनोरंजन डेस्क</span>
+                            <span><i class="fa-regular fa-clock"></i> २० मिनिटांपूर्वी</span>
+                            <span>मनोरंजन प्रतिनिधी</span>
                         </div>
                     </div>
                 </article>
@@ -293,15 +235,15 @@
                 <!-- Article 2 -->
                 <article class="card">
                     <div class="card-img-container">
-                        <span class="card-category" style="background: var(--logo-blue);">बॉक्स ऑफिस</span>
-                        <img src="https://picsum.photos/400/250?random=206" alt="Marathi Box Office" class="card-img">
+                        <span class="card-category">टीझर लॉन्च</span>
+                        <img src="https://picsum.photos/400/250?random=211" alt="Marathi Movie Teaser" class="card-img">
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">हाउसफुल्लचे बोर्ड! मराठी चित्रपटाची बॉक्स ऑफिसवर तुफान घोडदौड</h3>
-                        <p class="card-text">पहिल्या आठवड्यातच केला करोडोचा गल्ला; माउथ पब्लिसिटीमुळे प्रेक्षकांची चित्रपटगृहात तुफान गर्दी...</p>
+                        <h3 class="card-title">आगामी ऐतिहासिक मराठी चित्रपटाचा टीझर प्रदर्शित; अंगावर काटा आणणारे संवाद</h3>
+                        <p class="card-text">भव्यदिव्य सेट आणि प्रभावी पार्श्वसंगीतासह या चित्रपटाचा टीझर युट्यूबवर अव्वल स्थानावर ट्रेंड करत आहे...</p>
                         <div class="card-meta">
                             <span><i class="fa-regular fa-clock"></i> १ तासापूर्वी</span>
-                            <span>भारत वेब न्यूज</span>
+                            <span>फिल्म डेस्क</span>
                         </div>
                     </div>
                 </article>
@@ -309,15 +251,15 @@
                 <!-- Article 3 -->
                 <article class="card">
                     <div class="card-img-container">
-                        <span class="card-category" style="background: var(--logo-green);">विशेष मुलाखत</span>
-                        <img src="https://picsum.photos/400/250?random=207" alt="Actor Interview" class="card-img">
+                        <span class="card-category">रंगभूमी</span>
+                        <img src="https://picsum.photos/400/250?random=212" alt="Marathi Drama Theatre" class="card-img">
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">"हे पात्र साकारणे आव्हानात्मक होते..." मुख्य अभिनेत्याने व्यक्त केल्या भावना</h3>
-                        <p class="card-text">शूटिंगदरम्यान आलेले अनुभव आणि तयारीबाबत कलाकाराने भारत वेब न्यूजशी मारल्या दिलखुलास गप्पा...</p>
+                        <h3 class="card-title">मराठी रंगभूमीवर नव्या नाटकाचा १०० वा प्रयोग यशस्वी; प्रेक्षकांकडून कौतुकाचा वर्षाव</h3>
+                        <p class="card-text">दिग्दर्शक आणि कलाकारांनी प्रेक्षकांचे आभार मानत नाटकांविषयीच्या काही आठवणींना उजाळा दिला...</p>
                         <div class="card-meta">
                             <span><i class="fa-regular fa-clock"></i> ३ तासांपूर्वी</span>
-                            <span>विशेष प्रतिनिधी</span>
+                            <span>रंगभूमी प्रतिनिधी</span>
                         </div>
                     </div>
                 </article>
@@ -325,15 +267,15 @@
                 <!-- Article 4 -->
                 <article class="card">
                     <div class="card-img-container">
-                        <span class="card-category" style="background: var(--logo-red);">चित्रपट परीक्षण</span>
-                        <img src="https://picsum.photos/400/250?random=208" alt="Movie Review" class="card-img">
+                        <span class="card-category">विशेष मुलाखत</span>
+                        <img src="https://picsum.photos/400/250?random=213" alt="Marathi Actor Interview" class="card-img">
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">रिव्ह्यू: कौटुंबिक ड्रामा आणि विनोदाची उत्तम मेजवानी; कसा आहे नवा चित्रपट?</h3>
-                        <p class="card-text">उत्कृष्ट संगीत आणि कलाकारांचा सहज अभिनय; प्रेक्षकांचे मन जिंकण्यात चित्रपट यशस्वी...</p>
+                        <h3 class="card-title">"रोलसाठी वजन वाढवले..."; प्रसिद्ध मराठी अभिनेत्याने शेअर केला चित्रपटातील खास अनुभव</h3>
+                        <p class="card-text">आपल्या नवीन पात्राविषयी बोलताना अभिनेत्याने चित्रपट निर्मितीदरम्यान आलेल्या आव्हानांवर भाष्य केले...</p>
                         <div class="card-meta">
                             <span><i class="fa-regular fa-clock"></i> ५ तासांपूर्वी</span>
-                            <span>चित्रपट समीक्षक</span>
+                            <span>विशेष वार्ता</span>
                         </div>
                     </div>
                 </article>
@@ -343,23 +285,23 @@
 
         <!-- Sidebar -->
         <aside>
-            <!-- WhatsApp Box -->
+            <!-- WhatsApp Join Box -->
             <div class="sidebar-widget">
                 <div class="wa-box">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 2.5rem; color: #25d366;"></i>
-                    <h4 style="margin: 8px 0;">मराठी सिने-अपडेट्स व्हॉट्सॲपवर!</h4>
-                    <p style="font-size:0.8rem; color:#555;">चित्रपट समीक्षणे, बॉक्स ऑफिस संग्रह आणि ताज्या बातम्या मिळवा.</p>
+                    <i class="fa-brands fa-whatsapp" style="font-size: 2.5rem; color: var(--whatsapp);"></i>
+                    <h4 style="margin: 8px 0;">मराठी सिनेमा अपडेट्स व्हॉट्सॲपवर!</h4>
+                    <p style="font-size:0.8rem; color:#555;">चित्रपट रिव्ह्यू, नाटक प्रयोगाची माहिती व कलाकारांच्या गप्पा मिळवण्यासाठी जॉईन करा.</p>
                     <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" class="wa-btn"><i class="fa-brands fa-whatsapp"></i> व्हॉट्सॲप ग्रुप जॉईन करा</a>
                 </div>
             </div>
 
-            <!-- Entertainment Links -->
+            <!-- Entertainment Subcategories -->
             <div class="sidebar-widget">
-                <h3 class="widget-title">इतर विभाग</h3>
+                <h3 class="widget-title">मनोरंजन श्रेणी</h3>
                 <ul style="list-style: none; line-height: 2.2;">
-                    <li><a href="bollywood.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--logo-saffron);"></i> बॉलिवूड बातम्या</a></li>
-                    <li><a href="tv-serials.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--logo-saffron);"></i> टीव्ही मालिका</a></li>
-                    <li><a href="web-series.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--logo-saffron);"></i> ओटीटी व वेब सीरिज</a></li>
+                    <li><a href="bollywood.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--primary);"></i> बॉलिवूड (Bollywood)</a></li>
+                    <li><a href="tv.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--primary);"></i> टीव्ही मालिका (TV Serials)</a></li>
+                    <li><a href="entertainment.html" style="font-weight: 600;"><i class="fa-solid fa-chevron-right" style="font-size:10px; color:var(--primary);"></i> सर्व मनोरंजन बातम्या</a></li>
                 </ul>
             </div>
 
@@ -389,6 +331,7 @@
                     <li><a href="about.html">आमच्याबद्दल (About Us)</a></li>
                     <li><a href="contact.html">संपर्क (Contact Us)</a></li>
                     <li><a href="privacy-policy.html">गोपनीयता धोरण</a></li>
+                    <li><a href="disclaimer.html">अस्वीकरण</a></li>
                 </ul>
             </div>
 
@@ -399,7 +342,7 @@
                     <a href="https://www.instagram.com/bharat_web_news" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://twitter.com/Bharat_Web_News" target="_blank" title="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     <a href="https://youtube.com/@bharatwebnews4208" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" title="WhatsApp" style="background: #25d366;"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://chat.whatsapp.com/JXDPG8wr0bmEixVO5OKzeg" target="_blank" title="WhatsApp" style="background: var(--whatsapp);"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
@@ -408,6 +351,9 @@
             &copy; 2026 भारत वेब न्यूज. सर्व हक्क सुरक्षित. | Developed for bharatwebnews.in
         </div>
     </footer>
+
+    <!-- JS Integration -->
+    <script src="common.js"></script>
 
 </body>
 </html>
